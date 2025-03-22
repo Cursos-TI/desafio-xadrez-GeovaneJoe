@@ -14,32 +14,42 @@ void mover_torre(int casas) {
     mover_torre(casas - 1);  // Chamada recursiva reduzindo o número de casas
 }
 
-// Função recursiva para movimentar a Rainha para a esquerda
+// Função para movimentar a Rainha de forma iterativa (substituindo recursão)
 void mover_rainha(int casas) {
-    if (casas == 0) return;
-    printf("Esquerda\n");
-    mover_rainha(casas - 1);
+    for (int i = 0; i < casas; i++) {
+        printf("Esquerda\n");
+    }
 }
 
-// Função recursiva para movimentar o Bispo na diagonal superior direita
+// Função para movimentar o Bispo de forma iterativa (substituindo recursão)
 void mover_bispo(int casas) {
-    if (casas == 0) return;
-
-    printf("Cima, Direita\n");
-
-    // Chamada recursiva para continuar o movimento diagonal
-    mover_bispo(casas - 1);
+    for (int i = 0; i < casas; i++) {
+        printf("Cima\n");
+        printf("Direita\n");
+    }
 }
 
 // Função para movimentar o Cavalo usando loops aninhados
 void mover_cavalo() {
-    printf("Movimento do Cavalo:\n");
+    int movimentos_verticais = 2;  // O cavalo se move 2 casas para cima
+    int movimentos_horizontais = 1;  // O cavalo se move 1 casa para a direita
 
-    for (int i = 0; i < 2; i++) {  // Movimento para cima
-        printf("Cima\n");
+    // Loop para os movimentos verticais
+    for (int i = 0; i < movimentos_verticais; i++) {
+        if (i == 0) {
+            printf("Cima\n");  // Primeira casa para cima
+            continue;
+        } else {
+            printf("Cima\n");  // Segunda casa para cima
+        }
+
+        if (i == 1) {
+            break;  // Após mover 2 casas para cima, o cavalo move para a direita
+        }
     }
 
-    for (int j = 0; j < 1; j++) {  // Movimento para a direita
+    // Loop para o movimento horizontal (direita)
+    for (int j = 0; j < movimentos_horizontais; j++) {
         printf("Direita\n");
     }
 }
@@ -49,16 +59,16 @@ int main() {
     printf("Movimento da Torre:\n");
     mover_torre(MOVIMENTO_TORRE);
 
-    // Movimento do Bispo (recursivo)
+    // Movimento do Bispo (iterativo agora)
     printf("\nMovimento do Bispo:\n");
     mover_bispo(MOVIMENTO_BISPO);
 
-    // Movimento da Rainha
+    // Movimento da Rainha (iterativo agora)
     printf("\nMovimento da Rainha:\n");
     mover_rainha(MOVIMENTO_RAINHA);
 
     // Movimento do Cavalo
-    printf("\n");
+    printf("\nMovimento do Cavalo:\n");
     mover_cavalo();
 
     return 0;
